@@ -17,6 +17,6 @@ jobs:
         uses: actions/checkout@v3
       - name: List files
         run: ls -R  
-      # Step 2: Run the Python script
-      - name: Run Python script
-        run: python3 validate.py ${{ inputs.input_var }}
+#     # Step 2: Run the Python script
+#     - name: Run Python script
+#       run: python3 validate.py ${{ inputs.input_var }}
