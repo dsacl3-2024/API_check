@@ -15,17 +15,20 @@ jobs:
       contents: read
 
     steps:
-      # Step 1: Check out the reusable workflow's repository
-      - name: Checkout reusable repository
-        uses: actions/checkout@v3
-        with:
-          repository: ${{ github.repository }}  # Ensures the current reusable repo is checked out
-          ref: main  # Replace with the branch containing this workflow
-
-      # Step 2: Debug: Verify the directory and files
-      - name: List files
-        run: ls -R
-
-      # Step 3: Run the Python script
-      - name: Execute Python script
-        run: python3 validate.py "${{ inputs.input_var }}"
+        - name: Checkout Repository
+          uses: actions/checkout@v3
+          
+        - name: Verify validate.py File Exists
+          run: |
+            if [ ! -f "validate.py" ]; then
+              echo "Error: validate.py file is missing."
+              exit 1
+            fi
+  
+        - name: Run Validator Script
+          run: python3 validate.py "# snap_student"
+          shell: bash
+          
+        - name: Output Repository Structure (For Debugging)
+          run: ls -R
+          shell: bash
