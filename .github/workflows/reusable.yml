@@ -7,9 +7,6 @@ on:
       input_var:
         required: true
         type: string
-      another_input_var:
-        required: true
-        type: string
 
 jobs:
   the_job:
