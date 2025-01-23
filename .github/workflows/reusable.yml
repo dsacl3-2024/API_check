@@ -11,20 +11,21 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
+    permissions:  # Ensure the workflow has read access to its own repo
+      contents: read
+
     steps:
-      # Step 1: Check out the reusable workflow repository (validator repository)
+      # Step 1: Check out the reusable workflow's repository
       - name: Checkout reusable repository
         uses: actions/checkout@v3
         with:
-          # Specify the repository where the reusable workflow resides
-          repository: dsacl3-2024/API_check
-          ref: main # Replace 'main' with the branch name if necessary
-          
-      # Step 2: Debug: Verify that validate.py is available
-      - name: List all files
+          repository: ${{ github.repository }}  # Ensures the current reusable repo is checked out
+          ref: main  # Replace with the branch containing this workflow
+
+      # Step 2: Debug: Verify the directory and files
+      - name: Debug: List files
         run: ls -R
-              
-        
-#     # Step 2: Run the Python script
-#     - name: Run Python script
-#       run: python3 validate.py ${{ inputs.input_var }}
+
+      # Step 3: Run the Python script
+      - name: Execute Python script
+        run: python3 validate.py "${{ inputs.input_var }}"
