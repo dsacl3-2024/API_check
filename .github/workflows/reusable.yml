@@ -9,10 +9,13 @@ on:
         type: string
 
 jobs:
-  the_job:
+  run-script:
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@v1
-        - name: run
-          run: |
-            python3 validate.py ${{ inputs.input_var }}
+      # Step 1: Check out the reusable repository
+      - name: Checkout reusable repository
+        uses: actions/checkout@v3
+        
+      # Step 2: Run the Python script
+      - name: Run Python script
+        run: python3 validate.py ${{ inputs.input_var }}
