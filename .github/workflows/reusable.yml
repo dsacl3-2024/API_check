@@ -12,7 +12,7 @@ jobs:
   the_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Print inputs
-        uses: sacl3-2024/API_check/@main
-        run: |
+        - uses: actions/checkout@v1
+          working-directory: dsacl3-2024/API_check
+          run: |
             python3 validate.py ${{ inputs.input_var }}
