@@ -23,7 +23,7 @@ jobs:
           ref: main  # Replace with the branch containing this workflow
 
       # Step 2: Debug: Verify the directory and files
-      - name: Debug: List files
+      - name: List files
         run: ls -R
 
       # Step 3: Run the Python script
