@@ -12,11 +12,17 @@ jobs:
   run-script:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Check out the reusable repository
+     # Step 1: Check out the reusable workflow's repository
       - name: Checkout reusable repository
         uses: actions/checkout@v3
-      - name: List files
-        run: ls -R  
+        with:
+          repository: ${{ github.repository }} # Ensure the reusable repo is checked out
+          ref: main # Replace 'main' with the correct branch if needed
+          
+      # Step 2: Debug: Verify contents of the reusable repository
+      - name: List all files
+        run: ls -R
+        
 #     # Step 2: Run the Python script
 #     - name: Run Python script
 #       run: python3 validate.py ${{ inputs.input_var }}
