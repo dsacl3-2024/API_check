@@ -21,6 +21,6 @@ jobs:
         - run: echo "💡 The ${{ github.repository }} repository has been cloned to trunner."
         - run: echo "🖥️ The workflow is now ready to test your code on the runner."
         - name: List files in the repository
-        - run: |
+        - run: 
             ls ${{ github.workspace }}
             python3 dsacl3-2024/API_check/validate.py ${{ inputs.input_var }}
