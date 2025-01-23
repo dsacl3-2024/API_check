@@ -13,5 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print inputs
+        uses: sacl3-2024/API_check/@main
         run: |
-            python3 dsacl3-2024/API_check/validate.py ${{ inputs.input_var }}
+            python3 validate.py ${{ inputs.input_var }}
