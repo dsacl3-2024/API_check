@@ -14,4 +14,4 @@ jobs:
     steps:
       - name: Print inputs
         run: |
-            python3 validate.py ${{ inputs.input_var }}
+            python3 dsacl3-2024/API_check/validate.py ${{ inputs.input_var }}
