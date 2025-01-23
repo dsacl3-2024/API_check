@@ -1,4 +1,4 @@
-name: Test 52 (reusable)
+name: validator
 
 on:
   workflow_dispatch:
@@ -17,5 +17,4 @@ jobs:
     steps:
       - name: Print inputs
         run: |
-          echo "input_var: ${{ inputs.input_var }}"
-          echo "another_input_var: ${{ inputs.another_input_var }}"
+            python3 validate.py ${{ inputs.input_var }}
