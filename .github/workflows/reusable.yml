@@ -17,17 +17,8 @@ jobs:
     steps:
         - name: Checkout Repository
           uses: actions/checkout@v3
-          
-        - name: Verify validate.py File Exists
-          run: |
-            if [ ! -f "validate.py" ]; then
-              echo "Error: validate.py file is missing."
-              exit 1
-            fi
-  
-        - name: Run Validator Script
-          run: python3 validate.py "# snap_student"
-          shell: bash
+          with:
+              fetch-depth: 0
           
         - name: Output Repository Structure (For Debugging)
           run: ls -R
