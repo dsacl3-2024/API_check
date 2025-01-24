@@ -11,16 +11,6 @@ jobs:
   run-script:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo B code # THIS IS THE CRUCIAL STEP
-        uses: actions/checkout@v3
-        with:
-          repository: dsacl3-2024/API_check # Replace with your repo B
-          path: repo_b_code # optional, if you want to checkout to a subfolder
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
 
 
       - name: Run Python script
