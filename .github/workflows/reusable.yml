@@ -1,22 +1,15 @@
-name: Reusable Workflow
+name: Triggered Workflow
 
 on:
-  workflow_call:
-  
-permissions:
-  contents: read
+  repository_dispatch:
+    types: [trigger-workflow]
+    
 jobs:
-  test-call:
+  build:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout code from the specified repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          repository: ${{ inputs.target_repository }}
-          ref: main
-          token: ${{ secrets.GITHUB_TOKEN }}
-          - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-          - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-          - name: List files in the repository
-            run: |
-              ls ${{ github.workspace }}
+        ref: ${{ github.event.event_type.sha }}
