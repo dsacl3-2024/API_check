@@ -1,25 +1,11 @@
-name: Reusable Workflow (in Repo B)
+name: Reusable Workflow
 
 on:
   workflow_call:
-    inputs:
-      input_data:
-        required: false
-        type: string
 
 jobs:
-  run-script:
+  test-call:
     runs-on: ubuntu-latest
     steps:
-  
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-
-      - name: Run Python script
-        run: python validate.py "${{ inputs.input_data }}" # Or python repo_b_code/validate.py if you used path
-
       - name: Echo a message
-        run: echo "Private workflow executed successfully!"
+        run: echo "Reusable workflow called"
