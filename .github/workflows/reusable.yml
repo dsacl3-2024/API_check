@@ -16,11 +16,11 @@ jobs:
 
     steps:
         - name: Checkout the Correct Repository
-              uses: actions/checkout@v3
-              with:
-                repository: 'dsacl3-2024/API_check' # Replace with the correct repo name
-                token: ${{ secrets.GITHUB_TOKEN }}
-                fetch-depth: 0 # Ensure full history is fetched
+          uses: actions/checkout@v3
+          with:
+            repository: 'dsacl3-2024/API_check' # Replace with the correct repo name
+            token: ${{ secrets.GITHUB_TOKEN }}
+            fetch-depth: 0 # Ensure full history is fetched
           
         - name: Output Repository Structure (For Debugging)
           run: ls -R
