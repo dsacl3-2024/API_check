@@ -1,31 +1,30 @@
-# .github/workflows/reusable.yml
-name: Reusable Workflow
+name: Reusable Workflow (in Repo B)
 
-on:  # Trigger on workflow_call event
+on:
   workflow_call:
     inputs:
-      input_data:  # Input parameter
+      input_data:
         required: false
         type: string
-        description: Data passed from the calling workflow
 
 jobs:
-  run-script:  # Job to run the script
+  run-script:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code  # Checkout code from this repository
+      - name: Checkout Repo B code # THIS IS THE CRUCIAL STEP
         uses: actions/checkout@v3
+        with:
+          repository: dsacl3-2024/API_check # Replace with your repo B
+          path: repo_b_code # optional, if you want to checkout to a subfolder
 
-      - name: Set up Python  # Set up Python environment
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Run Python script using action  # Run the script
-        uses: actions/checkout@v3  # Checkout code from this repository (optional, if validate.py is not in the default location)
-        # Rest of the steps (optional, depending on your script's needs)
-      - name: Run the script  # Execute the script
-        run: python validate.py "${{ inputs.input_data }}"
 
-      - name: Echo a message  # Print a success message
+      - name: Run Python script
+        run: python validate.py "${{ inputs.input_data }}" # Or python repo_b_code/validate.py if you used path
+
+      - name: Echo a message
         run: echo "Private workflow executed successfully!"
