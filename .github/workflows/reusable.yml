@@ -1,9 +1,13 @@
-# .github/workflows/private-script.yml
-name: Run Private Script
+# .github/workflows/reusable.yml
+name: Reusable Workflow
 
-on:
-  repository_dispatch:
-    types: [run-private-script] # Matches the event_type
+on: # THIS IS THE KEY PART YOU WERE MISSING
+  workflow_call:
+    inputs:
+      input_data:
+        required: false
+        type: string
+        description: Data passed from the calling workflow
 
 jobs:
   run-script:
@@ -17,10 +21,8 @@ jobs:
         with:
           python-version: '3.x'
 
-#     - name: Install dependencies (if any)
-#       run: pip install -r requirements.txt
-
       - name: Run Python script
-        env: # Access data sent from the dispatcher if needed
-          INPUT_DATA: ${{ github.event.client_payload.input_data }}
-        run: python validate.py "$INPUT_DATA"
+        run: python validate.py "${{ inputs.input_data }}"
+
+      - name: Echo a message
+        run: echo "Private workflow executed successfully!"
