@@ -7,5 +7,6 @@ jobs:
   test-call:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo a message
-        run: echo "Reusable workflow called"
+      - name: List files
+        run: ls -R
+        
