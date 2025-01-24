@@ -1,30 +1,31 @@
 # .github/workflows/reusable.yml
 name: Reusable Workflow
 
-on: # THIS IS THE KEY PART YOU WERE MISSING
+on:  # Trigger on workflow_call event
   workflow_call:
     inputs:
-      input_data:
+      input_data:  # Input parameter
         required: false
         type: string
         description: Data passed from the calling workflow
 
 jobs:
-  run-script:
+  run-script:  # Job to run the script
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout code  # Checkout code from this repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: Set up Python  # Set up Python environment
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Run Python script using action
-        uses: actions/checkout@v3  # Checkout code from this repository
+      - name: Run Python script using action  # Run the script
+        uses: actions/checkout@v3  # Checkout code from this repository (optional, if validate.py is not in the default location)
         # Rest of the steps (optional, depending on your script's needs)
-        - name: Run the script
-          run: python validate.py "${{ inputs.input_data }}"
-      - name: Echo a message
+      - name: Run the script  # Execute the script
+        run: python validate.py "${{ inputs.input_data }}"
+
+      - name: Echo a message  # Print a success message
         run: echo "Private workflow executed successfully!"
